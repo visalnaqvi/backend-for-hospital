@@ -29,3 +29,5 @@ server.use("/api/reports",Authentication.verifyToken,  reportsRouter)
 server.listen(process.env.PORT || 3500,()=>{
     console.log("listning")
 })
+
+export default server;
