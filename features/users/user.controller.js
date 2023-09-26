@@ -46,6 +46,7 @@ export default class UserController {
 
             //generating jwt token if user exists
             const token = Authentication.generateToken(user)
+            req.session.token = token;
             res.send(token)
         }).catch(err => {
             console.log(err)
