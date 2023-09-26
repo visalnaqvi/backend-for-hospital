@@ -7,7 +7,7 @@ import Authentication from './config/authentication.js';
 import reportsRouter from './features/reports/reports.routes.js';
 import dotenv from 'dotenv';
 import cors from "cors"
-import session from 'express-session';
+
 dotenv.config();
 //initializing server
 const server = express();
@@ -16,15 +16,6 @@ server.use(cors());
 
 //using body parser for parsing request body
 server.use(bodyParser.json())
-
-server.use(
-    session({
-        secret:"XPJ2u7E8XJ02TTDOdlKXBtyQfgJRjknN",
-        resave:false,
-        saveUninitialized:true,
-        cookie:{secure:false}
-    })
-)
 
 //checking if app is running or not
 server.get("/",(req,res)=>{
