@@ -10,7 +10,7 @@ export default class PatientsController{
             if(patient){
 
                 //if patient already exists then returning its id
-                res.send(`Paitent already exist with id ${patient._id}`)
+                res.status(409).send(`Paitent already exist with id ${patient._id}`)
             }else{
 
                 //creating a new patient
@@ -22,7 +22,7 @@ export default class PatientsController{
                 })
                 .catch(err=>{
                     console.log(err)
-                    res.send("error")
+                    res.status(400).send("error")
                 })
             }
         })
@@ -49,10 +49,10 @@ export default class PatientsController{
                     res.send(report)
                 }).catch(err=>{
                     console.log(err);
-                    res.send("error")
+                    res.status(400).send("error")
                 })
             }else{
-                res.send(`No patient exist with id:${id}`)
+                res.status(404).send(`No patient exist with id:${id}`)
             }
         })
     }
@@ -70,7 +70,7 @@ export default class PatientsController{
                     res.send(reports)
                 })
             }else{
-                res.send(`No patient exist with id:${id}`)
+                res.status(404).send(`No patient exist with id:${id}`)
             }
         })
     }

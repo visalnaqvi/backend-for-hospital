@@ -38,6 +38,7 @@ server.use("/api/patients",Authentication.verifyToken, patientsRouter)
 server.use("/api/reports",Authentication.verifyToken,  reportsRouter)
 server.use("/api/users",userRouter)
 
+
 //listning to server at port 3500
 server.listen(process.env.PORT || 3500,()=>{
     console.log("listning")

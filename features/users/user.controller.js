@@ -11,7 +11,7 @@ export default class UserController {
             if (user) {
 
                 //if user already exists then return
-                res.send("userId already exist pleas choose different userId")
+                res.status(409).send("userId already exist pleas choose different userId")
                 return;
             }else{
 
@@ -26,7 +26,7 @@ export default class UserController {
                 //saving to database
                 newUser.save().then(user => res.send(user)).catch(err => {
                     console.log(err)
-                    res.send("error")
+                    res.status(400).send("error")
                 })
             }
         }
@@ -46,11 +46,10 @@ export default class UserController {
 
             //generating jwt token if user exists
             const token = Authentication.generateToken(user)
-            req.session.token = token;
             res.send(token)
         }).catch(err => {
             console.log(err)
-            res.send("error")
+            res.status(400).send("error")
         })
     }
 }

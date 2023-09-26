@@ -5,7 +5,7 @@ dotenv.config();
 const url = process.env.MONGO_URL
 
 //initializing connection
-mongoose.connect(url)
+mongoose.connect("mongodb+srv://visal:visal@mydatabase.3zuii7q.mongodb.net/?retryWrites=true&w=majority")
 
 const connection = mongoose.connection;
 

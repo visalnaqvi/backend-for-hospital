@@ -11,7 +11,7 @@ export default class Authentication{
         },
         "XPJ2u7E8XJ02TTDOdlKXBtyQfgJRjknN",
         {
-            expiresIn:'1h'
+            expiresIn:'10m'
         }
         )
 
@@ -20,17 +20,17 @@ export default class Authentication{
 
     //function to verify a jwt token
     static verifyToken(req,res,next){
-
+console.log("okokokoko")
         const token = req.headers['authorization'].replace("Bearer ","")
         if(!token){
-            res.send("Unauthorized")
+            res.status(401).send("Unauthorized")
         }
         try{
            jwt.verify(token , "XPJ2u7E8XJ02TTDOdlKXBtyQfgJRjknN" )
            next()
         }catch(err){
             console.log(err)
-            res.send("Unauthorized")
+            res.status(401).send("Unauthorized")
         }
 
     }
