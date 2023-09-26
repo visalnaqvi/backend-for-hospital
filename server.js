@@ -6,9 +6,12 @@ import patientsRouter from './features/patients/patients.routes.js';
 import Authentication from './config/authentication.js';
 import reportsRouter from './features/reports/reports.routes.js';
 import dotenv from 'dotenv';
+import cors from "cors"
 dotenv.config();
 //initializing server
 const server = express();
+
+server.use(cors());
 
 //using body parser for parsing request body
 server.use(bodyParser.json())
