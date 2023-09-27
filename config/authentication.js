@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken"
 
+
+//authentication class for handleing auth functions
 export default class Authentication{
 
     //function to genrate jwt token
@@ -20,7 +22,6 @@ export default class Authentication{
 
     //function to verify a jwt token
     static verifyToken(req,res,next){
-console.log("okokokoko")
         const token = req.headers['authorization'].replace("Bearer ","")
         if(!token){
             res.status(401).send("Unauthorized")
