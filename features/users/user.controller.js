@@ -76,4 +76,27 @@ export default class UserController {
         res.status(400).send("Error")
         })
     }
+
+
+    resetPassword(req,res){
+        const email = req.body.userId;
+        const password = req.body.password;
+        User.findOneAndUpdate({
+            userId:email
+        },
+        {
+            $set:{password:password}
+        },
+        { new: true }
+        ).then((user) => {
+            if (!user) {
+              return res.status(404).send("User not found");
+            }      
+            return res.status(200).send("Password updated");
+          })
+          .catch((err) => {
+            console.log(err);
+            return res.status(500).send("Error");
+          });
+    }
 }

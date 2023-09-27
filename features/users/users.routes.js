@@ -12,6 +12,7 @@ userRouter.post("/register",userController.signUp);
 userRouter.post("/login",userController.signIn);
 userRouter.get("/validate",Authentication.verifyToken,(req,res)=>{res.send(req.payload)});
 userRouter.post("/forgot-password",userController.forgotPassword);
+userRouter.post("/reset-password", Authentication.verifyToken , userController.resetPassword);
 
 
 export default userRouter;
