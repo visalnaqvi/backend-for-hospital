@@ -1,6 +1,7 @@
 import Authentication from "../../config/authentication.js"
 import User from "./user.schema.js"
 import jwt from "jsonwebtoken"
+import Mailer from "../../config/mailer.js"
 export default class UserController {
 
     //creates a new user and stores it in database
@@ -50,6 +51,29 @@ export default class UserController {
         }).catch(err => {
             console.log(err)
             res.status(400).send("error")
+        })
+    }
+
+    forgotPassword(req,res){
+        const email = req.body.userId;
+
+        let isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+        if(!isValid){
+            res.status(400).send("Not Valid Email")
+        }
+
+        User.findOne({
+            userId:email
+        }).then((user)=>{
+            const token = Authentication.generateToken(user)
+            if(Mailer.sentPasswordResetMail(user.userId , token)){
+                res.send("Email Sent")
+            }else{
+                res.status(400).send("Error")
+            };
+        }).catch(err=>{console.log(err)
+        res.status(400).send("Error")
         })
     }
 }

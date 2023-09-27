@@ -26,7 +26,8 @@ console.log("okokokoko")
             res.status(401).send("Unauthorized")
         }
         try{
-           jwt.verify(token , "XPJ2u7E8XJ02TTDOdlKXBtyQfgJRjknN" )
+           const payload = jwt.verify(token , "XPJ2u7E8XJ02TTDOdlKXBtyQfgJRjknN" )
+           req.payload = payload;
            next()
         }catch(err){
             console.log(err)

@@ -10,7 +10,8 @@ const userController = new UserController;
 //assigning proper controlers for API calls
 userRouter.post("/register",userController.signUp);
 userRouter.post("/login",userController.signIn);
-userRouter.get("/validate",Authentication.verifyToken,(req,res)=>{res.send("User Valid")});
+userRouter.get("/validate",Authentication.verifyToken,(req,res)=>{res.send(req.payload)});
+userRouter.post("/forgot-password",userController.forgotPassword);
 
 
 export default userRouter;
