@@ -6,6 +6,17 @@ Add your mongoDB url in mongoose.js file to connect to db.
 
 Hosting: [https://backend-for-hospital.onrender.com](https://backend-for-hospital.onrender.com)
 
+### Available user:
+
+sign in to `/api/doctor/login` using:
+
+{
+userId:doctor1,
+password:password
+}
+
+you will get a JWT token in return use that token in auth header for accessing differnet APIs 
+
 # Note that first request made to the server will take upto 15-20 sec to respond as using free server so because to inactivity sever shuts down
 
 ## first request will always take upto 15-20 sec to repond
@@ -18,7 +29,7 @@ End Point: `/doctor/register`
 
 Method: POST
 
-Request Body: ```{name:'name',userId:'email',password:'password',role:'optional'}```
+Request Body: ```{name:'name',userId:'userId',password:'password',role:'optional'}```
 
 Response: new user details
 
@@ -28,7 +39,7 @@ End Point: `/doctor/login`
 
 Method:POST
 
-Resquest Body: ```{userId:'email',password:'password'}```
+Resquest Body: ```{userId:'userId',password:'password'}```
 
 Response: JWT Token for session
 
@@ -46,7 +57,7 @@ End Point: `/doctor/forgot-password`
 
 Method:POST
 
-Request Body:```{userId:'email'}```
+Request Body:```{userId:'userId'}```
 
 Responce: Status of reset password email
 
@@ -56,7 +67,7 @@ End Point `/doctor/reset-password`
 
 Method:POST
 
-Request Body: ```{userId:'email',password:'newPassword'}```
+Request Body: ```{userId:'userId',password:'newPassword'}```
 
 Responce: New password details
 
